@@ -5,6 +5,14 @@
  */
 package Vista;
 
+import Controlador.ControladorPacientes;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -17,6 +25,67 @@ public class Paciente extends javax.swing.JFrame {
     public Paciente() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public void addBtnAgregar(ActionListener listenControles) {
+        btnAgregar.addActionListener(listenControles);
+    }
+
+    public void addBtnActualizar(ActionListener listenControles) {
+        btnGrabar.addActionListener(listenControles);
+    }
+
+    public void addBtnCancelar(ActionListener listenControles) {
+        btnCancelar.addActionListener(listenControles);
+    }
+
+    public JTextField getTxtApellidos() {
+        return txtApellidos;
+    }
+
+    public void setTxtApellidos(JTextField txtApellidos) {
+        this.txtApellidos = txtApellidos;
+    }
+
+    public JTextField getTxtDirección() {
+        return txtDirección;
+    }
+
+    public void setTxtDirección(JTextField txtDirección) {
+        this.txtDirección = txtDirección;
+    }
+
+    public JTextField getTxtIdentificacion() {
+        return txtIdentificacion;
+    }
+
+    public void setTxtIdentificacion(JTextField txtIdentificacion) {
+        this.txtIdentificacion = txtIdentificacion;
+    }
+
+    public JTextField getTxtNombres() {
+        return txtNombres;
+    }
+
+    public void setTxtNombres(JTextField txtNombres) {
+        this.txtNombres = txtNombres;
+    }
+
+    public JTextField getTxtTelefono() {
+        return txtTelefono;
+    }
+
+    public void setTxtTelefono(JTextField txtTelefono) {
+        this.txtTelefono = txtTelefono;
+    }
+
+    public void displayErrorMessage(String erroMessage) {
+        JOptionPane.showMessageDialog(this, erroMessage);
+    }
+
+    public void limpiarListadoLista() {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
     }
 
     /**
@@ -34,7 +103,7 @@ public class Paciente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtApellidos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtApellidos1 = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -57,19 +126,11 @@ public class Paciente extends javax.swing.JFrame {
 
         jLabel2.setText("Apellidos");
 
-        txtApellidos.setEnabled(false);
-
         jLabel3.setText("Nombres");
-
-        txtApellidos1.setEnabled(false);
 
         jLabel4.setText("Télefono");
 
-        txtTelefono.setEnabled(false);
-
         jLabel5.setText("Dirección");
-
-        txtDirección.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,7 +158,7 @@ public class Paciente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtApellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,7 +172,7 @@ public class Paciente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -125,19 +186,14 @@ public class Paciente extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "--[ Alergias ] --", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
-        jListAlergias.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jListAlergias.setEnabled(false);
         jScrollPane1.setViewportView(jListAlergias);
 
         cbxAlergia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxAlergia.setEnabled(false);
+        cbxAlergia.setEnabled(true);
 
         btnAgregar.setText("Agregar");
-        btnAgregar.setEnabled(false);
+        btnAgregar.setEnabled(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,9 +213,9 @@ public class Paciente extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAgregar)
-                    .addComponent(cbxAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
@@ -168,10 +224,9 @@ public class Paciente extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "--[ Controles ] --", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(51, 0, 255))); // NOI18N
 
         btnGrabar.setText("Actualizar");
-        btnGrabar.setEnabled(false);
+        btnGrabar.setEnabled(true);
 
         btnCancelar.setText("Cancelar");
-        btnCancelar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -261,22 +316,22 @@ public class Paciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnGrabar;
-    private javax.swing.JComboBox<String> cbxAlergia;
+    public javax.swing.JButton btnGrabar;
+    public javax.swing.JComboBox<String> cbxAlergia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jListAlergias;
+    public javax.swing.JList<String> jListAlergias;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtApellidos1;
-    private javax.swing.JTextField txtDirección;
+    public javax.swing.JTextField txtApellidos;
+    public javax.swing.JTextField txtDirección;
     private javax.swing.JTextField txtIdentificacion;
-    private javax.swing.JTextField txtTelefono;
+    public javax.swing.JTextField txtNombres;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
